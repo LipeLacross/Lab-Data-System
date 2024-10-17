@@ -1,0 +1,17 @@
+Sistema de gerenciamento de dados de laboratório
+
+o cliente tá em algumas estações de tratamento
+ele treina uma pessoa e essa pessoa faz a análises no laboratório mas fica mandando tudo por whatzap(dbo, dqo ph)
+
+ele quer  um Sistema que essas analises sejam recebidas pelas estações em um Sistema com banco de dados para ele ver, e que esse Sistema seja acessado de qualquer lugar(mobile, pc)
+
+tem que ter gráfico, com média, máximo, histórico
+
+não seria um sensor mandando as informações, mas sim a pessoa iria colocar os dados, tem varias estações com pessoas diferentes.
+ou seja pessoas de diferentes estações, tem que ter filtro de estação para o admin.
+
+o cliente é o admin e tem acesso a Plataforma com as informações e cada estação com as informações enviadas pelos usuários de cada estação.
+
+Ele tem o poder de criar usuários que tem acesso as informações de apenas uma estação específica
+
+Valor, tempo
