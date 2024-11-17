@@ -1,0 +1,88 @@
+Sistema de gerenciamento de dados de laboratório
+
+o cliente tá em algumas estações de tratamento
+ele treina uma pessoa e essa pessoa faz a análises no laboratório mas fica mandando tudo por whatzap(dbo, dqo ph)
+
+ele quer  um Sistema que essas analises sejam recebidas pelas estações em um Sistema com banco de dados para ele ver, e que esse Sistema seja acessado de qualquer lugar(mobile, pc)
+
+tem que ter gráfico, com média, máximo, histórico
+
+não seria um sensor mandando as informações, mas sim a pessoa iria colocar os dados, tem varias estações com pessoas diferentes.
+ou seja pessoas de diferentes estações, tem que ter filtro de estação para o admin.
+
+o cliente é o admin e tem acesso a Plataforma com as informações e cada estação com as informações enviadas pelos usuários de cada estação.
+
+Ele tem o poder de criar usuários que tem acesso as informações de apenas uma estação específica
+
+Valor, tempo
+
+
+Planejamento para o Sistema de Gerenciamento de Dados de Laboratório
+Objetivo
+Desenvolver um MVP para um sistema de gerenciamento de dados de análises de estações de tratamento, focando na inserção manual de dados pelos operadores de laboratório e na visualização das informações pelo cliente (admin). O sistema será acessível via desktop e dispositivos móveis, permitindo ao cliente (admin) gerenciar as informações de várias estações e visualizar gráficos de desempenho.
+
+Requisitos Funcionais
+1. Cadastro de Estações e Usuários
+O cliente (admin) poderá cadastrar várias estações e usuários vinculados a cada estação.
+Cada usuário terá permissão para inserir dados de uma única estação.
+2. Inserção de Dados de Análises
+Os operadores de laboratório poderão inserir manualmente dados de DBO, DQO e pH.
+A data e a hora das medições serão registradas no sistema.
+3. Visualização de Dados
+O admin terá acesso a todas as estações e poderá visualizar os dados históricos de cada uma.
+O sistema deve fornecer gráficos mostrando a média, o máximo e o histórico dos dados inseridos.
+Deve haver filtros por estação, período e tipo de análise.
+4. Controle de Acesso
+
+
+
+
+
+O admin pode criar e gerenciar usuários com acesso limitado a uma estação.
+Usuários com acesso a uma única estação poderão ver apenas os dados e gráficos da estação à qual estão vinculados.
+5. Relatórios e Gráficos
+Gráficos interativos mostrando o histórico de DBO, DQO e pH.
+Relatórios exportáveis em PDF ou Excel.
+Fluxo do Sistema
+Operador de Laboratório:
+Login: O operador faz login e é redirecionado para a tela da estação à qual tem acesso.
+Inserção de Dados: O operador insere os dados das análises (DBO, DQO, pH) e a data de coleta.
+Visualização: O operador pode visualizar os dados inseridos e gráficos com o histórico da estação.
+Admin (Cliente):
+Login: O cliente acessa a plataforma como administrador.
+Gerenciamento: O cliente pode cadastrar novas estações e usuários, gerenciar permissões e acessar os dados de todas as estações.
+Visualização: O cliente pode aplicar filtros para visualizar gráficos e relatórios detalhados das estações.
+Relatórios: O cliente pode gerar e exportar relatórios em PDF ou Excel.
+Tabelas do Banco de Dados (SQLite)
+Tabela users (Usuários)
+id (inteiro, chave primária)
+username (string)
+password (string, criptografada)
+email (string)
+role (string, valores: "admin", "operador")
+station_id (inteiro, FK para a estação)
+Tabela stations (Estações)
+id (inteiro, chave primária)
+name (string, nome da estação)
+location (string, localização)
+Tabela analyses (Análises)
+id (inteiro, chave primária)
+station_id (inteiro, FK para a estação)
+user_id (inteiro, FK para o usuário que inseriu)
+date (datetime, data e hora da análise)
+dbo (float)
+dqo (float)
+ph (float)
+Telas do Sistema
+1. Tela de Login
+Login com email e senha.
+Diferencia o tipo de usuário (admin ou operador) e redireciona para o dashboard adequado.
+2. Dashboard Admin
+Visão Geral: Exibe um resumo das análises recentes de todas as estações.
+Gerenciamento de Estações: Permite a criação e edição de estações.
+Gerenciamento de Usuários: Permite a criação, edição e remoção de usuários e atribuição de estações.
+Gráficos e Relatórios: Visualização de gráficos com filtros e geração de relatórios.
+3. Dashboard Operador
+Inserção de Dados: Formulário para inserção de dados de DBO, DQO e pH, com data de coleta.
+Histórico de Análises: Exibe uma lista das análises enviadas anteriormente.
+Gráficos: Visualização gráfica do histórico de análises da estação.

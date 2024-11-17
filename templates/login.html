@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+</form>
+<script>
+    document.getElementById('loginForm').onsubmit = async function(e) {
+        e.preventDefault();
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: document.getElementById('email').value, password: document.getElementById('password').value })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert('Login bem-sucedido!');
+            // Redirecionar para o dashboard do admin ou operador
+            window.location.href = '/admin';  // Altere para '/operator' se for operador
+        } else {
+            alert(data.msg);
+        }
+    }
+</script>
+</body>
+</html>

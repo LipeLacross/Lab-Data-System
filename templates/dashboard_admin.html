@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard Admin</title>
+</head>
+<body>
+<h1>Dashboard Admin</h1>
+<button onclick="location.href='/add_station'">Adicionar Estação</button>
+<button onclick="location.href='/add_user'">Adicionar Usuário</button>
+
+<h2>Estações Cadastradas</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Localização</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for station in stations %}
+        <tr>
+            <td>{{ station.id }}</td>
+            <td>{{ station.name }}</td>
+            <td>{{ station.location }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

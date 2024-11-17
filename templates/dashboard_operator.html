@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard Operador</title>
+</head>
+<body>
+<h1>Dashboard Operador</h1>
+<form id="analysisForm">
+    <input type="number" id="dbo" placeholder="DBO" required>
+    <input type="number" id="dqo" placeholder="DQO" required>
+    <input type="number" id="ph" placeholder="pH" required>
+    <button type="submit">Enviar Análise</button>
+</form>
+<div id="history"></div>
+<script>
+    document.getElementById('analysisForm').onsubmit = async function(e) {
+        e.preventDefault();
+        const response = await fetch('/analyses', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dbo: document.getElementById('dbo').value, dqo: document.getElementById('dqo').value, ph: document.getElementById('ph').value })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert('Análise enviada com sucesso!');
+            // Recarregar histórico se necessário
+        } else {
+            alert(data.msg);
+        }
+    }
+</script>
+</body>
+</html>
